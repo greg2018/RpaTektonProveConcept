@@ -17,9 +17,7 @@ spec:
       default: rpatektonproveconcept:latest      
   workspaces:
     - name: rpaTektonProveConceptWorkspace
- 
     - name: output
- 
     - name: source
  
   tasks:
@@ -42,6 +40,6 @@ spec:
       taskRef:
         name: show-readme
       workspaces:
-      - name: output
+      - name: source
         workspace: rpaTektonProveConceptWorkspace
  

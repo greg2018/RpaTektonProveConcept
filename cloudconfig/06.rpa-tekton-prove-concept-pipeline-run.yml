@@ -6,6 +6,12 @@ spec:
   params:
     - name: uid
       value: $(context.pipelineRun.uid)
+    - name: GIT_REPO
+      value: https://github.com/greg2018/RpaTektonProveConcept.git
+    - name: GIT_REVISION
+      value: BR01-TRY-OUT-Tekton-Pipeline
+    
+      
   pipelineRef:
     name: rpa-tekton-prove-concept-pipeline
   workspaces:
