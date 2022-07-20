@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  generateName: rpa-tekton-prove-concept-pipeline-run
+spec:
+  params:
+    - name: uid
+      value: $(context.pipelineRun.uid)
+  pipelineRef:
+    name: rpa-tekton-prove-concept-pipeline
+  workspaces:
+    - name: rpaTektonProveConceptWorkspace
+      persistentVolumeClaim:
+        claimName: rpa-tekton-prove-concept-claim
