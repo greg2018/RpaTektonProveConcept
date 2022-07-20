@@ -42,4 +42,11 @@ spec:
       workspaces:
       - name: source
         workspace: rpaTektonProveConceptWorkspace
+    - name: show-readme-second
+      runAfter: ["show-readme"]
+      taskRef:
+        name: show-readme-second
+      workspaces:
+      - name: sourceSecond
+        workspace: rpaTektonProveConceptWorkspace
  

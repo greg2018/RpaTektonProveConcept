@@ -1,11 +1,11 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: show-readme
+  name: show-readme-second
   description: Read and display README file.
 spec:
   workspaces:
-  - name: source
+  - name: sourceSecond
   steps:
   - name: read
     image: alpine:latest
@@ -15,8 +15,8 @@ spec:
       pwd
       ls -l
       echo "++++++after cd workspace"
-      cd workspace/source
+      cd workspace/sourceSecond
       pwd
       ls -l
-      echo $(workspaces.source.path)
-      cat $(workspaces.source.path)/README.md
+      echo $(workspaces.sourceSecond.path)
+      cat $(workspaces.sourceSecond.path)/README.md
