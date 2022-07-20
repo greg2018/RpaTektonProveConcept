@@ -12,3 +12,9 @@ spec:
     - name: rpaTektonProveConceptWorkspace
       persistentVolumeClaim:
         claimName: rpa-tekton-prove-concept-claim
+    - name: output
+      persistentVolumeClaim:
+        claimName: rpa-tekton-prove-concept-claim
+    - name: source
+      persistentVolumeClaim:
+        claimName: rpa-tekton-prove-concept-claim
