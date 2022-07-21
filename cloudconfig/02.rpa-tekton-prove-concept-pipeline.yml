@@ -42,11 +42,26 @@ spec:
       workspaces:
       - name: source
         workspace: rpaTektonProveConceptWorkspace
-    - name: show-readme-second
-      runAfter: ["show-readme"]
+        
+    - name: buildah
+      params:
+        - name: IMAGE
+          value: gregqiu/rpatektonproveconcept:latest
+        - name: STORAGE_DRIVER
+          value: vfs
+        - name: DOCKERFILE
+          value: ./Dockerfile
+        - name: CONTEXT
+          value: .
+        - name: TLSVERIFY
+          value: 'false'
+        - name: FORMAT
+          value: oci
+      runAfter: [show-readme]
       taskRef:
-        name: show-readme-second
+        kind: ClusterTask
+        name: buildah
       workspaces:
-      - name: sourceSecond
+      - name: source
         workspace: rpaTektonProveConceptWorkspace
  
