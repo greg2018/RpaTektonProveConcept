@@ -59,4 +59,10 @@ docker.io
 
 docker pull docker.io/gregqiu/spring-boot-example:latest
 
+##############
+oc create secret generic github-pat-secret \
+    --type=kubernetes.io/basic-auth \
+    --from-literal=username=greg2018 \
+    --from-literal=password=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
+
  
