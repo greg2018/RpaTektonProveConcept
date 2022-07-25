@@ -36,6 +36,8 @@ oc get sa -n pipelines-tutorial pipeline -o yaml
 
 oc get secret pipeline-github-pat-secret -o yaml
 
+oc get secret docker-io-secret -o yaml
+
 #03) Other instructions for reference
 	
 oc secrets link default docker --for=pull
