@@ -1,0 +1,67 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: rpa-tekton-prove-concept-pipeline
+spec:
+  params:
+    - name: uid
+      description: the uid
+    - name: GIT_REPO
+      type: string
+      default: https://github.com/greg2018/RpaTektonProveConcept.git
+    - name: GIT_REVISION
+      type: string
+      default: main
+    - name: IMAGE_NAME
+      type: string  
+      default: rpatektonproveconcept:latest      
+  workspaces:
+    - name: rpaTektonProveConceptWorkspace
+    - name: output
+    - name: source
+ 
+  tasks:
+    - name: git-clone
+      params:
+        - name: url
+          value: $(params.GIT_REPO)
+        - name: revision
+          value: $(params.GIT_REVISION)
+        - name: deleteExisting
+          value: 'true'
+      taskRef:
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: rpaTektonProveConceptWorkspace
+    - name: show-readme
+      runAfter: ["fetch-repository"]
+      taskRef:
+        name: show-readme
+      workspaces:
+      - name: source
+        workspace: rpaTektonProveConceptWorkspace
+        
+    - name: buildah
+      params:
+        - name: IMAGE
+          value: gregqiu/rpatektonproveconcept:latest
+        - name: STORAGE_DRIVER
+          value: vfs
+        - name: DOCKERFILE
+          value: ./Dockerfile
+        - name: CONTEXT
+          value: .
+        - name: TLSVERIFY
+          value: 'false'
+        - name: FORMAT
+          value: oci
+      runAfter: [show-readme]
+      taskRef:
+        kind: ClusterTask
+        name: buildah
+      workspaces:
+      - name: source
+        workspace: rpaTektonProveConceptWorkspace
+ 
