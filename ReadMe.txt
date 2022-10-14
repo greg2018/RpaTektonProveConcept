@@ -3,3 +3,4 @@ BR04-test-merge-request-webhook-event
 BR05-test-merge-request-webhook-event
 
 BR06-test-merge-request-webhook-event
+BR07-test-merge-request-webhook-event
